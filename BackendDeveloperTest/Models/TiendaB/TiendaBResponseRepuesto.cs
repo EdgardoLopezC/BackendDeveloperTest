@@ -19,7 +19,7 @@ namespace BackendDeveloperTest.Models.TiendaB
                     marca => marca.Id,
                     (repuesto, marca) => new {
                         repuesto, marca
-                    }).Where( x => x.repuesto.Nombre == repuesto).OrderBy(x => x.repuesto.Precio).ToList();
+                    }).Where( x => x.repuesto.Nombre.Contains(repuesto)).OrderBy(x => x.repuesto.Precio).ToList();
 
                 //inner join Marca, Modelo y Carro para generar el modelo de Repuesto
                 var queryVehiculoLista = context.Modelos.Join(

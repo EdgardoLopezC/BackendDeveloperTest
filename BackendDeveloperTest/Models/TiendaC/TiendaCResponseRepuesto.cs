@@ -20,7 +20,7 @@ namespace BackendDeveloperTest.Models.TiendaC
                     (repuesto, tipoRepuesto) => new {
                         repuesto,
                         tipoRepuesto
-                    }).Where(r => r.tipoRepuesto.Nombre == repuesto).OrderBy(r => r.repuesto.Precio)
+                    }).Where(r => r.tipoRepuesto.Nombre.Contains(repuesto)).OrderBy(r => r.repuesto.Precio)
                     .Join(
                      context.Marcas,
                      j1 => j1.repuesto.IdMarca,
