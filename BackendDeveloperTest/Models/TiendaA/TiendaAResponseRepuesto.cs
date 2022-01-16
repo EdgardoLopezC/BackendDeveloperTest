@@ -14,7 +14,7 @@ namespace BackendDeveloperTest.Models.TiendaA
 
             using (tiendaAContext context = new tiendaAContext())
             {
-                repuestoLista = context.Repuestos.Where(repuesto => repuesto.NombreRepuesto == repuestoo).ToList<Repuesto>();
+                repuestoLista = context.Repuestos.Where(repuesto => repuesto.NombreRepuesto == repuestoo).OrderBy(repuesto => repuesto.PrecioRepuesto).ToList<Repuesto>();
             }
             foreach (Repuesto repuesto in repuestoLista)
             {

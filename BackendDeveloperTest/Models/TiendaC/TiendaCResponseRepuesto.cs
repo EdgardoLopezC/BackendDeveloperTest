@@ -20,7 +20,7 @@ namespace BackendDeveloperTest.Models.TiendaC
                     (repuesto, tipoRepuesto) => new {
                         repuesto,
                         tipoRepuesto
-                    }).Where(r => r.tipoRepuesto.Nombre == repuesto)
+                    }).Where(r => r.tipoRepuesto.Nombre == repuesto).OrderBy(r => r.repuesto.Precio)
                     .Join(
                      context.Marcas,
                      j1 => j1.repuesto.IdMarca,
@@ -29,13 +29,6 @@ namespace BackendDeveloperTest.Models.TiendaC
                          j1, marca
                      }).ToList();
 
-                foreach (var rr in queryRepuestoLista)
-                {
-                    Console.WriteLine("nombre tipo repuesto: " + rr.j1.tipoRepuesto.Nombre);
-                    Console.WriteLine("id repuesto: " + rr.j1.repuesto.Id);
-                    Console.WriteLine("\n\n\n\n");
-                }
-                
                 //inner join Marca, Modelo y Carro para generar el modelo de Repuesto
                 var queryVehiculoLista = context.Modelos.Join(
                     context.Carros,
@@ -72,7 +65,6 @@ namespace BackendDeveloperTest.Models.TiendaC
 
                     responseLista.Add(response);
                 }
-                
             }
             return responseLista;
         }
