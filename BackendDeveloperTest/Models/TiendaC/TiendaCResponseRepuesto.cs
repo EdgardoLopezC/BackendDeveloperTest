@@ -3,12 +3,12 @@ using BackendDeveloperTest.Helpers;
 
 namespace BackendDeveloperTest.Models.TiendaC
 {
-    public class TiendaCResponseRepuesto
+    public class TiendaCResponseRepuesto: ResponseDB
     {
-        public List<Response> obtenerResponse()
+        public override List<Response> obtenerResponse(string repuesto)
         {
             List<Response> responseLista = new List<Response>();
-            TiendaResponse tiendaResponse = new ObtenerResponse().getTienda("Tienda A");
+            TiendaResponse tiendaResponse = new ObtenerResponse().getTienda("Tienda C");
 
             using (tiendaCContext context = new tiendaCContext())
             {
@@ -20,7 +20,7 @@ namespace BackendDeveloperTest.Models.TiendaC
                     (repuesto, tipoRepuesto) => new {
                         repuesto,
                         tipoRepuesto
-                    }).Where(r => r.tipoRepuesto.Nombre == "Amortiguador trasero")
+                    }).Where(r => r.tipoRepuesto.Nombre == repuesto)
                     .Join(
                      context.Marcas,
                      j1 => j1.repuesto.IdMarca,
@@ -74,8 +74,6 @@ namespace BackendDeveloperTest.Models.TiendaC
                 }
                 
             }
-                
-
             return responseLista;
         }
     }

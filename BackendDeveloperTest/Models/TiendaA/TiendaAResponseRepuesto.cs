@@ -4,9 +4,9 @@ using BackendDeveloperTest.Models.CentralDeRepuesto;
 
 namespace BackendDeveloperTest.Models.TiendaA
 {
-    public class TiendaAResponseRepuesto
+    public class TiendaAResponseRepuesto:ResponseDB
     {
-        public List<Response> obtenerResponse()
+        public override List<Response> obtenerResponse(string repuestoo)
         {
             List<Response> responseLista = new List<Response>();
             List<Repuesto> repuestoLista = new List<Repuesto>();
@@ -14,7 +14,7 @@ namespace BackendDeveloperTest.Models.TiendaA
 
             using (tiendaAContext context = new tiendaAContext())
             {
-                repuestoLista = context.Repuestos.Where(repuesto => repuesto.NombreRepuesto == "Amortiguador trasero").ToList<Repuesto>();
+                repuestoLista = context.Repuestos.Where(repuesto => repuesto.NombreRepuesto == repuestoo).ToList<Repuesto>();
             }
             foreach (Repuesto repuesto in repuestoLista)
             {
