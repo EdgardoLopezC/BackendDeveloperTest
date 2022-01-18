@@ -24,14 +24,19 @@ namespace BackendDeveloperTest.Controllers
                     new TiendaCResponseRepuesto()
                 };
 
-
-            foreach ( ResponseDB responseDB in responseDBList)
+            try
             {
-                string repuesto = "Amortiguador trasero"; // "Limpiaparabrisas";
-                responseList.AddRange(responseDB.obtenerResponse(modelRepuesto.nombre));
+                foreach (ResponseDB responseDB in responseDBList)
+                {
+                    string repuesto = "Amortiguador trasero"; // "Limpiaparabrisas";
+                    responseList.AddRange(responseDB.obtenerResponse(modelRepuesto.nombre));
+                }
+                return Ok(responseList);
             }
-
-            return responseList;
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }
